@@ -5,6 +5,7 @@ var Product = require('../models/Product.js');
 
 /* GET ALL PRODUCTS */
 router.get('/', function(req, res, next) {
+  console.log("estoy entrando por GET ALL PRODUCTS!");
   Product.find(function (err, products) {
     if (err) return next(err);
     res.json(products);
@@ -13,6 +14,8 @@ router.get('/', function(req, res, next) {
 
 /* GET SINGLE PRODUCT BY ID */
 router.get('/:id', function(req, res, next) {
+  console.log(req.params.id);
+  console.log("estoy entrando por GET SINGLE PRODUCT BY ID!");
   Product.findById(req.params.id, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -20,8 +23,9 @@ router.get('/:id', function(req, res, next) {
 });
 
 /* SAVE PRODUCT */
-router.post('/', function(req, res, next) {
-  console.log(req.body);
+router.post('/', function(req, res, next) {  
+  console.log(req.body); 
+  console.log("estoy entrando por SAVE PRODUCT!"); 
   Product.create(req.body, function (err, post) {
     if (err) {
       console.log(err);
@@ -34,6 +38,7 @@ router.post('/', function(req, res, next) {
 /* UPDATE PRODUCT */
 router.put('/:id', function(req, res, next) {
   console.log(req.body);
+  console.log("estoy entrando por UPDATE PRODUCT!");
   Product.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) {
       console.log(err);
@@ -45,6 +50,8 @@ router.put('/:id', function(req, res, next) {
 
 /* DELETE PRODUCT */
 router.delete('/:id', function(req, res, next) {
+  console.log(req.body);
+  console.log("estoy entrando por DELETE PRODUCT!");
   Product.findByIdAndRemove(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
